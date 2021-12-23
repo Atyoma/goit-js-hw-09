@@ -1,21 +1,32 @@
 const refs = {
   start: document.querySelector('button[data-start]'),
   stop: document.querySelector('button[data-stop]'),
-  background: document.querySelector('body'),
+  backgd: document.querySelector('body'),
 };
-const randomColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+
+let intervalId = null;
 
 function getRandomHexColor() {
+  const randomColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+
   return randomColor;
 }
 
-console.log(randomColor);
-
 refs.start.addEventListener('click', onClickStart);
-// refs.stop.addEventListener('click', onClickStop);
+refs.stop.addEventListener('click', onClickStop);
 
 function onClickStart(e) {
-  refs.background.style.backgroundColor = randomColor;
+  refs.start.disabled = true;
+  refs.stop.disabled = false;
+  intervalId = setInterval(() => {
+    refs.backgd.style.backgroundColor = getRandomHexColor();
+  }, 1000);
 }
-console.log(refs.background);
-// function onClickStop(){}
+
+function onClickStop(e) {
+  refs.start.disabled = false;
+  refs.stop.disabled = true;
+  clearInterval(intervalId);
+}
+
+console.log();
