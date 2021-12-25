@@ -17,7 +17,7 @@ img {
   max-width: 100%;
 }
 
-button {
+.button-switcher {
   margin-left: 20px;
   padding: 10px;
   background-color: #c0c0c9;
